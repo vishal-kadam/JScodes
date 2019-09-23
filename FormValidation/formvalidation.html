@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Form Validation</title>
+
+    <script>
+        
+        function validateForm() {
+            
+            var username = document.getElementById('username').value;
+            var email = document.getElementById('usermail').value;            
+            
+
+            var temp1 = validateUsername(username);
+            var temp2 = validateEmail(email);
+
+            if(temp1 == false) {
+
+                document.getElementById('user').innerHTML = 'Invalid username!!';                 
+                document.getElementById('user').style.color = 'red';
+            }
+
+            if(temp2 == false) {
+
+                document.getElementById('em').innerHTML = 'Invalid email!!';                 
+                document.getElementById('em').style.color = 'red';
+            }
+
+            if(temp1 && temp2) {
+
+                alert("Login Successful!!");
+                document.getElementById('user').innerHTML = '';
+                document.getElementById('em').innerHTML = '';
+                return;
+            }
+
+            alert("Error logging in!!");
+        }
+
+        function validateUsername(username) {
+            
+            let userName = String(username);
+            if(userName.length <= 3) {
+                return false;
+            }
+
+            if(userName.charAt(0)>='0' && userName.charAt(0)<='9') {
+                return false;
+            }
+
+            return true;
+        }
+
+        function validateEmail(email) {
+
+            return /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()\.,;\s@\"]+\.{0,1})+([^<>()\.,;:\s@\"]{2,}|[\d\.]+))$/.test(String(email));
+        }
+
+    </script>
+
+    <style>
+        
+        .mydiv{
+            background-color: aquamarine;            
+        }
+
+    </style>
+
+</head>
+<body>
+   
+    <div class='mydiv'>
+        
+        <br>
+        <p style="margin-left: 35em"> Username: <input  type="text" id="username" placeholder="Enter name"> <span id='user'></span> </p>         
+        <p style="margin-left: 35em"> Email: <input style="margin-left: 1.8em" type="email" id="usermail" placeholder="Enter mail ID"> <span id='em'></span> </p>        
+        <p style="margin-left: 41.5em"> <input type="button" style="background-color: cornflowerblue" id='btn' value="SUBMIT" onclick="validateForm();"> </p>        
+        <br>
+    </div>
+
+</body>
+</html>
