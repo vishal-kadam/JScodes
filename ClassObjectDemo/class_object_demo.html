@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+    
+        function Test() {
+
+            this.var1 = 0;
+            let var2 = 0;
+            this.function1 = function() {
+
+                function2();
+            }
+
+            let function2 = function() {
+                
+                var2++;
+            }
+
+            this.printValues = function() {
+
+                console.log('Var1='+this.var1+" Var2="+var2);
+            }
+        }
+        
+        var obj1 = new Test();
+        var obj2 = new Test();
+
+        obj1.function1();
+        obj1.function1();
+        obj1.var1++;        
+        obj1.printValues(); // Var1=1 Var2=2
+
+        obj2.function1();
+        obj2.var1++;
+        obj2.printValues(); // Var1=1 Var2=2
+
+    </script>
+
+</body>
+</html>
